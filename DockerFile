@@ -1,0 +1,15 @@
+# Utiliser l'image de base Alpine avec Java 17 (car ton projet est basé sur Java)
+FROM openjdk:17-alpine
+
+# Définir le répertoire de travail dans le conteneur Docker
+WORKDIR /app
+
+# Copier le fichier .jar (livrable) dans le conteneur
+# Assure-toi que le chemin 'target/foyer-0.0.1-SNAPSHOT.jar' soit correct
+COPY target/appSpringStageV2-0.0.1-SNAPSHOT.jar app.jar
+
+# Exposer le port sur lequel l'application Spring Boot va tourner (par exemple, 8080)
+EXPOSE 9090
+
+# Définir la commande d'exécution de l'application
+ENTRYPOINT ["java", "-jar", "app.jar"]
